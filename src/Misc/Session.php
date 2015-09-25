@@ -3,9 +3,12 @@
 namespace Misc;
 
 /**
+ * Class Session
+ *
  * Clase envoltoria (wrapper) de la php session con funciones básicas.
  *
  * @author Maxi Nivoli <m_nivoli@hotmail.com>
+ * @package Misc
  */
 
 class Session{	

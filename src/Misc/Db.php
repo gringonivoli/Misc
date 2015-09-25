@@ -1,11 +1,10 @@
 <?php
 
 namespace Misc;
-
 use PDO;
 
 /**
- * Db
+ * Trait Db
  *
  * Facilita la creación de objetos PDO usando los perfiles
  * definidos en un archivo de configuración.
@@ -18,6 +17,9 @@ use PDO;
  *
  * IMPORTANTE: El archivo de configuración se debe haber cargado
  * con la clase Config.
+ *
+ * @author Maxi Nivoli <m_nivoli@hotmail.com>
+ * @package Misc
  */
 
 trait Db{

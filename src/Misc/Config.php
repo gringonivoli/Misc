@@ -3,9 +3,12 @@
 namespace Misc;
 
 /**
- * Clase que accede archivos de configuracion y a sus propiedades.
+ * Class Config
+ *
+ * Accede a archivos de configuracion y a sus propiedades.
  *
  * @author Maxi Nivoli <m_nivoli@hotmail.com>
+ * @package Misc
  */
 
 class Config{
