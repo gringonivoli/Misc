@@ -65,7 +65,6 @@ class Config{
 	 * @param string
 	 */
 	public function load($file = ''){
-		$file = SpanArt::$CONF_PATH."{$file}.php";
 		if(file_exists($file)){
 			require($file);
 			$this->config = array_merge($this->config, $config);
