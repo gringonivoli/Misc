@@ -8,7 +8,12 @@
 
 namespace Misc;
 
-
+/**
+ * Trait Util
+ *
+ * @author Maxi Nivoli <m_nivoli@hotmail.com>
+ * @package Misc
+ */
 trait Util {
 
     /**
