@@ -144,4 +144,22 @@ trait Util {
             $string
         );
     }
+
+    /**
+     * extr
+     *
+     * Extrae una variable de una clase,
+     * verificando previamente que esa variable
+     * exista en esa clase, de esta forma se
+     * evitan problemas al tratar con objetos
+     * creados al vuelo, especialmente creados
+     * con la clase stdClass.
+     *
+     * @param $class
+     * @param $property
+     * @return null
+     */
+    public function extr($class, $property){
+        return property_exists($class, $property) ? $class->$property : null;
+    }
 }
