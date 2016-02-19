@@ -119,6 +119,22 @@ trait Util {
     }
 
     /**
+     * getTimestampForMySQL
+     *
+     * Pasandole un timestamp generado con php
+     * retorna uno adecuado para ser almacenado
+     * en una base de datos MySQL.
+     *
+     * @param $timestamp
+     * @param string $timeZone
+     * @return bool|string
+     */
+    public function getTimestampForMySQL($timestamp, $timeZone = 'America/Argentina/Cordoba'){
+        date_default_timezone_set($timeZone);
+        return date("Y-m-d H:i:s", $timestamp);
+    }
+
+    /**
      * Whatever to Camel Case
      *
      * Convierte un string snake_case, spinal-case, o
