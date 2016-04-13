@@ -7,6 +7,7 @@
  */
 
 namespace Misc;
+use stdClass;
 
 /**
  * Trait Util
@@ -177,5 +178,41 @@ trait Util {
      */
     public function extr($class, $property){
         return property_exists($class, $property) ? $class->$property : null;
+    }
+
+    /**
+     * arrayToObject
+     *
+     * Convierte un array en un objeto, en caso
+     * de que las key del array esten en snake_case o
+     * en spinal-case (param-case) se puede pasar el
+     * delimitador de palabras para que sea reemplazado
+     * y las keys se conviertan en camelCase.
+     * Si no se desea que se cambie el estilo de las
+     * keys se puede pasar false en el parámetro
+     * $strStyleSrc.
+     *
+     * @param array $array
+     * @param bool $object
+     * @param string $strStyleSrc
+     * @return bool|stdClass
+     */
+    public function arrayToObject($array, $object = false, $strStyleSrc = '_') {
+        if (!is_object($object)){
+            $object = new stdClass();
+        }
+        foreach ($array as $key => $value) {
+            if (!($strStyleSrc === false)) {
+                $key = $this->whateverToCamelcase($key, $strStyleSrc);
+            }
+            if (is_array($value)){
+                $object->{$key} = new stdClass();
+                $this->arrayToObject($value, $object->{$key});
+            } else {
+                $object->{$key} = $value;
+            }
+        }
+
+        return $object;
     }
 }
