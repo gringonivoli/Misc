@@ -7,6 +7,7 @@
  */
 
 namespace Misc;
+use Exception;
 use stdClass;
 
 /**
@@ -214,5 +215,21 @@ trait Util {
         }
 
         return $object;
+    }
+
+    /**
+     * Is Ok
+     *
+     * Valida un elemento y en caso de ser incorrecto
+     * genera una Excepcion.
+     *
+     * @param $element
+     * @param string $msg
+     * @throws Exception
+     */
+    public function isOk($element, $msg = "Excepción Generada mediante isOk"){
+        if(!$element):
+            throw new Exception($msg);
+        endif;
     }
 }
