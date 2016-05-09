@@ -235,45 +235,45 @@ trait Util {
 
     /**
      * getHttpUserAgent
-     * 
-     * Si existe la variable retorna 
-     * el agente de usuario, si no, 
+     *
+     * Si existe la variable retorna
+     * el agente de usuario, si no,
      * retorna null.
-     * 
+     *
      * @return null|string
      */
     public function getHttpUserAgent() {
-        return $_SERVER['HTTP_USER_AGENT'] ? $_SERVER['HTTP_USER_AGENT'] : null;
+        return array_key_exists("HTTP_USER_AGENT", $_SERVER) ? $_SERVER['HTTP_USER_AGENT'] : null;
     }
 
     /**
      * getUserIp
-     * 
-     * Retorna la ip del cliente, 
+     *
+     * Retorna la ip del cliente,
      * usuario conectado, si es que esta
      * se encuentra en alguna de las variables
      * del sistema y es válida.
-     * 
+     *
      * @return string
      */
     public function getUserIp() {
         $ipaddress = "UNKNOWN";
-        if ($_SERVER["HTTP_CLIENT_IP"]) {
+        if (array_key_exists("HTTP_CLIENT_IP", $_SERVER)) {
             $ipaddress = $_SERVER["HTTP_CLIENT_IP"];
         }
-        else if($_SERVER["HTTP_X_FORWARDED_FOR"]) {
+        else if(array_key_exists("HTTP_X_FORWARDED_FOR", $_SERVER)) {
             $ipaddress = $_SERVER["HTTP_X_FORWARDED_FOR"];
         }
-        else if($_SERVER["HTTP_X_FORWARDED"]) {
+        else if(array_key_exists("HTTP_X_FORWARDED", $_SERVER)) {
             $ipaddress = $_SERVER["HTTP_X_FORWARDED"];
         }
-        else if($_SERVER["HTTP_FORWARDED_FOR"]) {
+        else if(array_key_exists("HTTP_FORWARDED_FOR", $_SERVER)) {
             $ipaddress = $_SERVER["HTTP_FORWARDED_FOR"];
         }
-        else if($_SERVER["HTTP_FORWARDED"]) {
+        else if(array_key_exists("HTTP_FORWARDED", $_SERVER)) {
             $ipaddress = $_SERVER["HTTP_FORWARDED"];
         }
-        else if($_SERVER["REMOTE_ADDR"]) {
+        else if(array_key_exists("REMOTE_ADDR", $_SERVER)) {
             $ipaddress = $_SERVER["REMOTE_ADDR"];
         }
 
