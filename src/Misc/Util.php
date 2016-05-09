@@ -232,4 +232,55 @@ trait Util {
             throw new Exception($msg);
         endif;
     }
+
+    /**
+     * getHttpUserAgent
+     * 
+     * Si existe la variable retorna 
+     * el agente de usuario, si no, 
+     * retorna null.
+     * 
+     * @return null|string
+     */
+    public function getHttpUserAgent() {
+        return $_SERVER['HTTP_USER_AGENT'] ? $_SERVER['HTTP_USER_AGENT'] : null;
+    }
+
+    /**
+     * getUserIp
+     * 
+     * Retorna la ip del cliente, 
+     * usuario conectado, si es que esta
+     * se encuentra en alguna de las variables
+     * del sistema y es válida.
+     * 
+     * @return string
+     */
+    public function getUserIp() {
+        $ipaddress = "UNKNOWN";
+        if ($_SERVER["HTTP_CLIENT_IP"]) {
+            $ipaddress = $_SERVER["HTTP_CLIENT_IP"];
+        }
+        else if($_SERVER["HTTP_X_FORWARDED_FOR"]) {
+            $ipaddress = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        }
+        else if($_SERVER["HTTP_X_FORWARDED"]) {
+            $ipaddress = $_SERVER["HTTP_X_FORWARDED"];
+        }
+        else if($_SERVER["HTTP_FORWARDED_FOR"]) {
+            $ipaddress = $_SERVER["HTTP_FORWARDED_FOR"];
+        }
+        else if($_SERVER["HTTP_FORWARDED"]) {
+            $ipaddress = $_SERVER["HTTP_FORWARDED"];
+        }
+        else if($_SERVER["REMOTE_ADDR"]) {
+            $ipaddress = $_SERVER["REMOTE_ADDR"];
+        }
+
+        if (!filter_var($ipaddress, FILTER_VALIDATE_IP)) {
+            $ipaddress = "UNKNOWN";
+        }
+
+        return $ipaddress;
+    }
 }
