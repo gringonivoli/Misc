@@ -234,6 +234,20 @@ trait Util {
     }
 
     /**
+     * stringToBoolean
+     *
+     * Convierte la cadena true al
+     * valor booleano true y lo mismo
+     * con la cadena false.
+     *
+     * @param $val
+     * @return bool
+     */
+    public function stringToBoolean($val) {
+        return ($val === "true");
+    }
+
+    /**
      * getHttpUserAgent
      *
      * Si existe la variable retorna
@@ -282,5 +296,22 @@ trait Util {
         }
 
         return $ipaddress;
+    }
+
+    /**
+     * varErrorLog
+     * 
+     * Manda la salida de la función 
+     * var_dump al log de errores de 
+     * php.
+     * 
+     * @param null $object
+     */
+    public function varErrorLog($object = null) {
+        ob_start();                    
+        var_dump($object);           
+        $contents = ob_get_contents(); 
+        ob_end_clean();                
+        error_log($contents);
     }
 }
