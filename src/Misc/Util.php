@@ -314,4 +314,21 @@ trait Util {
         ob_end_clean();                
         error_log($contents);
     }
+
+    /**
+     * formatNumber
+     *
+     * wrapper de la función php
+     * format_number pero con
+     * valores por defecto.
+     *
+     * @param $number
+     * @param int $decimals
+     * @param string $decimalPoint
+     * @param string $thousandsSep
+     * @return string
+     */
+    public function formatNumber($number, $decimals = 3, $decimalPoint = ",", $thousandsSep = ".") {
+        return number_format($number, $decimals, $decimalPoint, $thousandsSep);
+    }
 }
