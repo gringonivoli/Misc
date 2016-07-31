@@ -331,4 +331,33 @@ trait Util {
     public function formatNumber($number, $decimals = 3, $decimalPoint = ",", $thousandsSep = ".") {
         return number_format($number, $decimals, $decimalPoint, $thousandsSep);
     }
+
+    /**
+     * numericVal
+     *
+     * Retorna el float de un
+     * valor pasado como primer
+     * parámetro que se pueda convertir
+     * usando floatval, en caso de que
+     * se quieran pasar a float varias
+     * propiedades de un objeto, se pasa
+     * como primera parámetro el objeto
+     * y como segundo las propiedades del
+     * mismo que se desean convertir a float.
+     *
+     * @param $element
+     * @param array $properties
+     * @return bool|float
+     */
+    public function numericVal($element, $properties = []) {
+        $result = true;
+        if (count($properties)) {
+            foreach ($properties as $value) {
+                $element->{$value} = floatval($element->{$value});
+            }
+        } else if (!is_object($element)) {
+            $result = floatval($element);
+        }
+        return $result;
+    }
 }
