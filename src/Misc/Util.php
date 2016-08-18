@@ -360,4 +360,23 @@ trait Util {
         }
         return $result;
     }
+
+    /**
+     * customArrayMerge
+     *
+     * Reemplaza el valor de las claves
+     * de source en las claves identicas de
+     * destination, destination es pasado
+     * por referencia, por lo que ya queda modificado.
+     *
+     * @param $source
+     * @param $destination
+     */
+    public function customArrayMerge($source, & $destination) {
+        if (is_array($source) && (is_array($destination) || is_object($destination))) {
+            foreach ($source as $key => $item) {
+                $destination["{$key}"] = $item;
+            }
+        }
+    }
 }
