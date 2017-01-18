@@ -403,11 +403,12 @@ trait Util {
      * @param $object
      * @return array
      */
-    public function objectToArray($object) {
+    public function objectToArray($object, $camelCaseToSnakeCase = true) {
         $array = [];
         if (is_object($object)) {
             foreach ($object as $property => $value) {
-                $array[$this->camelCaseToSnakeCase($property)] = $value;
+                $key = $camelCaseToSnakeCase ? $this->camelCaseToSnakeCase($property) : $property;
+                $array["{$key}"] = $value;
             }
         }
         return $array;
