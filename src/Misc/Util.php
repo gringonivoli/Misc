@@ -7,7 +7,6 @@
  */
 
 namespace Misc;
-use Exception;
 use stdClass;
 
 /**
@@ -225,11 +224,11 @@ trait Util {
      *
      * @param $element
      * @param string $msg
-     * @throws Exception
+     * @throws \Exception
      */
-    public function isOk($element, $msg = "Excepción Generada mediante isOk"){
+    public function isOk($element, $msg = "Excepción generada desde isOK"){
         if(!$element):
-            throw new Exception($msg);
+            throw new \Exception($msg);
         endif;
     }
 
@@ -300,18 +299,18 @@ trait Util {
 
     /**
      * varErrorLog
-     * 
-     * Manda la salida de la función 
-     * var_dump al log de errores de 
+     *
+     * Manda la salida de la función
+     * var_dump al log de errores de
      * php.
-     * 
+     *
      * @param null $object
      */
     public function varErrorLog($object = null) {
-        ob_start();                    
-        var_dump($object);           
-        $contents = ob_get_contents(); 
-        ob_end_clean();                
+        ob_start();
+        var_dump($object);
+        $contents = ob_get_contents();
+        ob_end_clean();
         error_log($contents);
     }
 
@@ -378,5 +377,39 @@ trait Util {
                 $destination["{$key}"] = $item;
             }
         }
+    }
+
+    /**
+     * @param array $propertyValue
+     * @return stdClass
+     */
+    public function getObject($propertyValue = []) {
+        $object = new stdClass();
+        foreach ($propertyValue as $key => $value) {
+            $object->{$key} = $value;
+        }
+        return $object;
+    }
+
+    /**
+     * @param $string
+     * @return string
+     */
+    public function camelCaseToSnakeCase($string) {
+        return strtolower(preg_replace('/([^A-Z])([A-Z])/', "$1_$2", $string));
+    }
+
+    /**
+     * @param $object
+     * @return array
+     */
+    public function objectToArray($object) {
+        $array = [];
+        if (is_object($object)) {
+            foreach ($object as $property => $value) {
+                $array[$this->camelCaseToSnakeCase($property)] = $value;
+            }
+        }
+        return $array;
     }
 }
