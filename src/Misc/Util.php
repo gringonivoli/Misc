@@ -396,7 +396,8 @@ trait Util {
      * @return string
      */
     public function camelCaseToSnakeCase($string) {
-        return strtolower(preg_replace('/([^A-Z])([A-Z])/', "$1_$2", $string));
+        $string = preg_replace('/([^A-Z])([A-Z])/', "$1_$2", $string);
+        return strtolower(preg_replace('/([A-Z])([A-Z])/', "$1_$2", $string));
     }
 
     /**
