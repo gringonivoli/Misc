@@ -414,4 +414,17 @@ trait Util {
         }
         return $array;
     }
+
+    /**
+     * @param $image
+     * @param string $mime
+     * @return string
+     */
+    public function getDataURI($image, $mime = "") {
+        return "data:".
+            (function_exists("mime_content_type") ?
+                mime_content_type($image) :
+                $mime).
+            ";base64,".base64_encode(file_get_contents($image));
+    }
 }
