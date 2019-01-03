@@ -70,14 +70,12 @@ class Upload {#IMPLEMENTAR LA VERIFICACION DE SI SE PUEDE ESCRIBIR EN EL DIRECTO
      * @param $extension
      */
     public function setFileName($name, $extension){
-        $name = str_replace(" ", "", $name);
         $name = $this->cleanString($name);
         $fileName = uniqid("", true).basename($name);
         $this->fileName = $fileName.$extension;
     }
 
     public function setCustomFileName($name){
-        $name = str_replace(" ", "", $name);
         $name = $this->cleanString($name);
         $this->fileName = $name;
     }
@@ -255,7 +253,7 @@ class Upload {#IMPLEMENTAR LA VERIFICACION DE SI SE PUEDE ESCRIBIR EN EL DIRECTO
     $string = str_replace(array('Ó','Ò','Ô','Õ','Ö'),"O",$string);
     $string = str_replace(array('ú','ù','û','ü'),"u",$string);
     $string = str_replace(array('Ú','Ù','Û','Ü'),"U",$string);
-    $string = str_replace(array('[','^','´','`','¨','~',']','?','¿'),"",$string);
+    $string = str_replace(array('[','^','´','`','¨','~',']','?','¿', ' '),"",$string);
     $string = str_replace("ç","c",$string);
     $string = str_replace("Ç","C",$string);
     $string = str_replace("ñ","n",$string);
